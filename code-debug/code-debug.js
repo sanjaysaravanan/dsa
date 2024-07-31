@@ -6,6 +6,14 @@ setTimeout(() => {
   console.log("Hi");
 }, 0);
 
-p.then(() => console.log("dsds"));
+p.then(() => console.log("Hello"));
 
-console.log("line 7");
+console.log("Simple Log");
+
+(function () {
+  var x = 30;
+  (function () {
+    console.log(x);
+    var x = 100;
+  })();
+})();
