@@ -1,16 +1,16 @@
-class Solution {
-  public int[] findTwoSum(int[] numbers, int sum) {
-      int length = numbers.length;
-      
-      for (int gap = 1; gap < length; gap++) {
-          for (int right = gap; right < length; right++) {
-              int left = right - gap;
-              if (numbers[left] + numbers[right] == sum) {
-                  return new int[] {left, right};
-              }
-          }
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] + nums[i] === target) {
+        return [i, j];
       }
-      
-      return new int[0]; // Return empty array if no solution found
+    }
   }
-}
+};
+
+console.log(twoSum([3, 3], 6));
