@@ -15,49 +15,46 @@ const displayValues = (head) => {
  * @return {ListNode}
  */
 var removeNthFromEnd = function (head, n) {
-  var temp = head;
+  let temp = head;
+
+  let len = 0;
+
+  while (temp) {
+    temp = temp.next;
+    len++;
+  }
+
+  const removeIndex = len - n;
+
   let prev = null;
-  let next;
-  while (temp !== null) {
-    next = temp.next;
-    temp.next = prev;
-    prev = temp;
-    temp = next;
-  }
 
-  let i = 1;
+  temp = head;
 
-  let p = null;
-
-  while (i <= n) {
-    let t = prev;
-    prev = prev.next;
-    if (p && i === n) {
-      p.next = prev;
-    } else {
-      p = t;
+  if (removeIndex === 0) {
+    head = head.next;
+  } else {
+    let i = 0;
+    while (i <= removeIndex) {
+      if (i === removeIndex) {
+        prev.next = temp.next;
+      } else {
+        prev = temp;
+        temp = temp.next;
+      }
+      i++;
     }
-    i++;
   }
 
-  var temp = p;
-  prev = null;
-  next = undefined;
-  while (temp !== null) {
-    next = temp.next;
-    temp.next = prev;
-    prev = temp;
-    temp = next;
-  }
-
-  return prev;
+  return head;
 };
 
-const head = new ListNode(
+/* const head = new ListNode(
   1,
   new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
-);
+); */
+
+const head = new ListNode(1, new ListNode(2));
 
 //displayValues(head);
 // reverseList(head);
-displayValues(removeNthFromEnd(head, 2));
+displayValues(removeNthFromEnd(head, 1));
